@@ -3,5 +3,4 @@ select e.reports_to as employee_id, (select name from employees where employee_i
 from employees e
 where e.reports_to is not null
 group by e.reports_to
-having count(*)>=1
 order by employee_id
