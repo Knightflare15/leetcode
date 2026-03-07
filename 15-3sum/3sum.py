@@ -8,7 +8,7 @@ class Solution:
             sumo = 0
             while l < r:
                 sumo=nums[i]+nums[l]+nums[r]
-                if sumo == 0 and (nums[i],nums[l],nums[r]) not in res:
+                if sumo == 0:
                     res.add((nums[i],nums[l],nums[r]))
                     l+=1
                     r-=1
