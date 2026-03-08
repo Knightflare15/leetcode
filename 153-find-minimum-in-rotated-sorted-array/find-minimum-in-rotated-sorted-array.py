@@ -4,7 +4,6 @@ class Solution:
         r = len(nums)-1
         while l<r:
             mid = (r+l)//2
-            print(""+str(nums[mid])+" "+str(l)+" "+str(r))
             if nums[l]>nums[mid]:
                 r = mid
             elif nums[r]<nums[mid]:
