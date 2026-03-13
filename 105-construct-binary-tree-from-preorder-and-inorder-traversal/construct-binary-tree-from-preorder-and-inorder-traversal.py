@@ -5,20 +5,27 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def buildTreeR(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-            if not preorder:
-                return None
-            root = TreeNode()
-            root.val = preorder[0]
-            l = 0
-            while l<len(inorder) and inorder[l]!=root.val:
-                l+=1
-            root.left = self.buildTreeR(preorder[1:l+1],inorder[0:l])
-            root.right = self.buildTreeR(preorder[l+1:],inorder[l+1:])
-            return root
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        self.i = 0
-        return self.buildTreeR(preorder,inorder)
+        inorder_map = {v:i for i,v in enumerate(inorder)}
+        self.pre = 0
+
+        def dfs(l, r):
+            if l > r:
+                return None
+
+            root_val = preorder[self.pre]
+            self.pre += 1
+
+            root = TreeNode(root_val)
+
+            mid = inorder_map[root_val]
+
+            root.left = dfs(l, mid-1)
+            root.right = dfs(mid+1, r)
+
+            return root
+
+        return dfs(0, len(inorder)-1)
         
 
         
