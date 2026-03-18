@@ -4,13 +4,14 @@ class Solution:
         dp[0] = 0
         coin = set(coins)
         for i in range(amount):
-            if i+1 in coin:
-                dp[i+1] = 1
+            k = i+1
+            if k in coin:
+                dp[k] = 1
                 continue
             for itr in coins:
-                if i+1-itr >=0:
-                   dp[i+1] = min(dp[i+1],dp[i-itr+1])
-            if dp[i+1] != 0:
-                dp[i+1]+=1
+                if k-itr >=0:
+                   dp[k] = min(dp[k],dp[k-itr])
+            if dp[k] != 0:
+                dp[k]+=1
 
         return dp[amount] if dp[amount]!=float('inf') else -1 
