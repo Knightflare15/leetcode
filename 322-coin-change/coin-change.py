@@ -8,7 +8,7 @@ class Solution:
                 dp[i+1] = 1
                 continue
             for itr in coins:
-                if i+1-itr >=0 and dp[i+1-itr]!=0:
+                if i+1-itr >=0:
                    dp[i+1] = min(dp[i+1],dp[i-itr+1])
             if dp[i+1] != 0:
                 dp[i+1]+=1
