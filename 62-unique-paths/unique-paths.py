@@ -18,9 +18,9 @@ class Solution:
             if mat[i+1][j+1]>0:
                 continue
             mat[i+1][j+1] = mat[i][j+1] + mat[i+1][j]
-            if i+1<m and (i+1,j):
+            if i+1<m :
                 q.append([i+1,j])
-            if j+1<n and (i,j+1):
+            if j+1<n :
                 q.append([i,j+1])
 
         return mat[m][n]
