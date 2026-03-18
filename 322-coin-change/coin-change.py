@@ -5,9 +5,6 @@ class Solution:
         coin = set(coins)
         for i in range(amount):
             k = i+1
-            if k in coin:
-                dp[k] = 1
-                continue
             for itr in coins:
                 if k-itr >=0:
                    dp[k] = min(dp[k],dp[k-itr]+1)
