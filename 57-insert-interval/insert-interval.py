@@ -9,9 +9,6 @@ class Solution:
             while i+1<len(intervals) and intervals[i+1][0] <= interval[1]:
                 interval[0] = min(intervals[i+1][0],interval[0])
                 interval[1] = max(intervals[i+1][1],interval[1])
-                print(intervals[i])
-                print(intervals[i+1])
-                print(interval)
                 i+=1
             i+=1
             res.append(interval)
