@@ -23,13 +23,11 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 found = False
-                if board[i][j] == "O" and (i,j) not in visitededge:
+                if board[i][j] == "O":
                     found = dfs(i,j)
                 if found:
                     for itrX,itrY in visited:
                         board[itrX][itrY] = "X"
-                else:
-                    for itr in visited:
-                        visitededge.add(itr)
-                visited.clear() 
+                visited.clear()
+                
         return
