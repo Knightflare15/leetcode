@@ -8,9 +8,7 @@ class Solution:
             inv[i] = 0
         for i,j in prerequisites:
             d[i].add(j)
-            d[j] = d.get(j,0)
-            inv[i] = inv.get(i,0)+1
-            inv[j] = inv.get(j,0)
+            inv[i]+=1
         arr = deque()
         for i in d:
             if inv[i] == 0:
