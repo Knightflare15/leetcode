@@ -7,7 +7,7 @@ class Solution:
             d[i] = set()
             inv[i] = 0
         for i,j in prerequisites:
-            d[i].add(j)
+            d[j].add(i)
             inv[i]+=1
         arr = deque()
         for i in d:
@@ -16,12 +16,10 @@ class Solution:
         while arr:
             node = arr.popleft()
             res.append(node)
-            for i,j in prerequisites:
-                if node in d[i]:
-                    d[i].remove(node)
-                    inv[i]-=1
-                    if inv[i] == 0:
-                        arr.append(i) 
+            for j in d[node] :
+                    inv[j]-=1
+                    if inv[j] == 0:
+                        arr.append(j) 
 
         return res if len(res)==len(inv) else []
 
