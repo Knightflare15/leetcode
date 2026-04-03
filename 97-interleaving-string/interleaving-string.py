@@ -1,19 +1,17 @@
 class Solution:
-    def isInterleave(self, s1: str, s2: str, s3: str) -> bool:
-        if len(s1)+len(s2) != len(s3):
+    def isInterleave(self, s1, s2, s3):
+        if len(s1) + len(s2) != len(s3):
             return False
-        memo = {}
-        def dfs(str1,str2,i):
-            if  i == len(s3) and str1 == len(s1) and str2 == len(s2):
-                return True
-            if (str1,str2,i) in memo:
-                return memo[(str1,str2,i)]
-            res = False
-            if str1<len(s1) and s1[str1] == s3[i]:
-                res = res or dfs(str1+1,str2,i+1)
-            if str2<len(s2) and s2[str2] == s3[i]:
-                res = res or dfs(str1,str2+1,i+1)
-            
-            memo[(str1,str2,i)] = res or False
-            return memo[(str1,str2,i)]
-        return dfs(0,0,0)
+
+        m, n = len(s1), len(s2)
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
+        dp[0][0] = True
+
+        for i in range(m + 1):
+            for j in range(n + 1):
+                if i > 0 and s1[i-1] == s3[i+j-1]:
+                    dp[i][j] |= dp[i-1][j]
+                if j > 0 and s2[j-1] == s3[i+j-1]:
+                    dp[i][j] |= dp[i][j-1]
+
+        return dp[m][n]
