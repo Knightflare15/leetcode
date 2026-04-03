@@ -7,11 +7,11 @@ class Solution:
             if (i,state) in memo:
                 return memo[(i,state)]
             if state>=0:
-                a1 = prices[i]-state + dfs(i+2,-1)
+                a1 = prices[i] + dfs(i+2,-1)
                 a2 = dfs(i+1,state)
             else:
                 a1 = dfs(i+1,state)
-                a2 = dfs(i+1,prices[i])
+                a2 = -prices[i] + dfs(i+1,-state)
             memo[(i,state)] = max(a1,a2)
             return memo[(i,state)]
         return dfs(0,-1)
