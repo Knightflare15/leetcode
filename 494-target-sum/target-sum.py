@@ -1,13 +1,18 @@
 class Solution:
-    def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        memo = {}
-        def dfs(i,sumo):
-            if i == len(nums) and sumo == target:
-                return 1
-            if i>=len(nums):
-                return 0
-            if (i,sumo) in memo:
-                return memo[(i,sumo)]
-            memo[(i,sumo)] = dfs(i+1,sumo-nums[i])+(dfs(i+1,sumo+nums[i]))
-            return memo[(i,sumo)]
-        return dfs(0,0) 
+    def findTargetSumWays(self, nums, target):
+        total = sum(nums)
+
+        # edge case
+        if (target + total) % 2 != 0 or abs(target) > total:
+            return 0
+
+        s = (target + total) // 2
+
+        dp = [0] * (s + 1)
+        dp[0] = 1
+
+        for num in nums:
+            for i in range(s, num - 1, -1):
+                dp[i] += dp[i - num]
+
+        return dp[s]
