@@ -1,19 +1,19 @@
 class Solution:
     def jump(self, nums: List[int]) -> int:
-        count=0
-        max_reach=[float('inf')]*(len(nums))
-        max_reach[0] = 0
-        i=0
-        while i<len(nums):
-            for itr in range(1,nums[i]+1):
-                if i+itr>=len(nums):
-                    break
-                max_reach[i+itr] = min(max_reach[i+itr],max_reach[i]+1)
-            i+=1
-        print(max_reach)
-        return max_reach[-1]    
-
-
+        if len(nums) == 1:
+            return 0
+        max_reach = [nums[0]]
+        i=1
+        while i < (len(nums)):
+            max_reached = max_reach[-1]
+            if max_reached>=len(nums)-1:
+                break
+            while i <= max_reach[-1]:
+                max_reached = max(max_reached,nums[i]+i)
+                i+=1
+            max_reach.append(max_reached)
+        return len(max_reach)
+            
             
 
 
